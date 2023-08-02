@@ -1,8 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Jost } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// import { Providers } from "@/store/provider";
+
+const jost = Jost({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="max-w-5xl m-auto my-16">
-        {children}
-        </main>
+      <body className={jost.className}>
+        {/* <Providers> */}
+          <main className="max-w-5xl m-auto my-16">{children}</main>
+        {/* </Providers> */}
       </body>
     </html>
   );
