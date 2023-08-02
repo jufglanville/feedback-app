@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { FiChevronLeft } from "react-icons/fi";
 import { FeedbackCard } from "@/components/FeedbackCard";
 import CommentsCard from "@/components/CommentsCard";
