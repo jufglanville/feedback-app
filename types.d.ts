@@ -5,15 +5,23 @@ type Option = {
 }
 
 type User = {
+  id: number;
   image: string;
   name: string;
   username: string;
 }
 
-type Comment = {
+type Reply = {
+  content: string;
+  replyingTo: string;
+  user: User;
+}
+
+type FeedbackComment = {
   id: string;
   content: string;
   user: User;
+  replies: Reply[];
 }
 
 type FeedbackPost = {
@@ -24,5 +32,5 @@ type FeedbackPost = {
   upvoted: boolean;
   status: string;
   description: string;
-  comments: Comment[];
+  comments: FeedbackComment[];
 }
