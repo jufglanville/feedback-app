@@ -6,10 +6,10 @@
     "username": "velvetround"
   },
   "sortOptions": [
-    { "id": "MostUpvotes", "label": "Most Upvotes" },
-    { "id": "LeastUpvotes", "label": "Least Upvotes" },
-    { "id": "MostComments", "label": "Most Comments" },
-    { "id": "LeastComments", "label": "Least Comments" }
+    { "id": "mostUpvotes", "label": "Most Upvotes" },
+    { "id": "leastUpvotes", "label": "Least Upvotes" },
+    { "id": "mostComments", "label": "Most Comments" },
+    { "id": "leastComments", "label": "Least Comments" }
   ],
   "categories": [
     { "id": "all", "label": "All" },
@@ -284,7 +284,7 @@
       "category": "feature",
       "upvotes": 62,
       "upvoted": false,
-      "status": "in-progress",
+      "status": "inProgress",
       "description": "Add ability to create professional looking portfolio from profile.",
       "comments": [
         {
@@ -305,7 +305,7 @@
       "category": "feature",
       "upvotes": 31,
       "upvoted": false,
-      "status": "in-progress",
+      "status": "inProgress",
       "description": "Be able to bookmark challenges to take later on.",
       "comments": [
         {
@@ -326,7 +326,7 @@
       "category": "bug",
       "upvotes": 9,
       "upvoted": false,
-      "status": "in-progress",
+      "status": "inProgress",
       "description": "Screenshots of solutions with animations don’t display correctly.",
       "comments": []
     },

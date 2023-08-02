@@ -14,6 +14,7 @@ export const SearchFilter = ({ categories }: Props) => {
   const selectedCategories = filter?.split(",") || ["all"];
 
   const handleSelection = (id: string) => {
+    const params = new URLSearchParams(searchParams.toString());
     let newSelectedCategories = selectedCategories;
     newSelectedCategories = newSelectedCategories.filter((item) => item !== "all");
 
@@ -25,7 +26,8 @@ export const SearchFilter = ({ categories }: Props) => {
       newSelectedCategories = [...newSelectedCategories, id];
     }
 
-    router.push(`?categories=${newSelectedCategories.join(",")}`)
+    params.set("categories", newSelectedCategories.join(","));
+    router.push(`?${params.toString()}`)
   };
 
   return (

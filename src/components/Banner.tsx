@@ -1,15 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
-import { getSortOptions } from "@/lib/getSortOptions";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
+  sortOptions: Option[];
   feedbackNo: number;
 }
 
-export const Banner = async ({ feedbackNo = 0 }: Props) => {
-  const optionsData: Promise<Option[]> = getSortOptions();
-  const options = await optionsData;
+export const Banner = ({ sortOptions, feedbackNo = 0 }: Props) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const handleSelection = (id: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("sort", id);
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <div className="flex justify-between items-center p-3 bg-slate-700 rounded-md">
@@ -20,13 +29,18 @@ export const Banner = async ({ feedbackNo = 0 }: Props) => {
           width={28}
           height={24}
         />
-        <p className="font-semibold text-xl text-white mr-4">{feedbackNo} Suggestions</p>
+        <p className="font-semibold text-xl text-white mr-4">
+          {feedbackNo} Suggestions
+        </p>
         <Dropdown
-          options={options}
+          options={sortOptions}
           style="dark"
           chevron={true}
           weight="font-bold"
           size="text-sm"
+          onSelect={(id) => {
+            handleSelection(id);
+          }}
         >
           <span className="mr-1 text-sm">Sort by:</span>
         </Dropdown>

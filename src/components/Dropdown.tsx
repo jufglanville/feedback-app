@@ -10,6 +10,7 @@ type Props = {
   chevron?: boolean;
   weight?: "font-bold";
   size?: "text-sm";
+  onSelect: (id: string) => void;
 };
 
 const Dropdown = ({
@@ -19,6 +20,7 @@ const Dropdown = ({
   chevron,
   weight,
   size,
+  onSelect,
 }: Props) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState(options[0]);
@@ -31,6 +33,7 @@ const Dropdown = ({
   const handleSelect = (option: Option) => {
     setSelected(option);
     setIsActive(false);
+    onSelect(option.id);
   };
 
   useEffect(() => {

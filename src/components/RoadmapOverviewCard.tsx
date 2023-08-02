@@ -1,14 +1,27 @@
+"use client";
+
 import Link from "next/link";
-import { getAllRoadmapOptions } from "@/lib/getAllRoadmapOptions";
+import { useSearchParams, useRouter } from "next/navigation";
 
 interface Props {
   roadmapCount: { [key: string]: number };
+  roadmapOptions: Option[];
 }
 
-export const RoadmapOverviewCard = async ({ roadmapCount }: Props) => {
-  const roadmapOptionData: Promise<Option[]> = getAllRoadmapOptions();
+export const RoadmapOverviewCard = ({
+  roadmapCount,
+  roadmapOptions,
+}: Props) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const filter = searchParams.get("status");
+  const selectedStatus = filter || "all";
 
-  const roadmapOptions = await roadmapOptionData;
+  const handleSelect = (id: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("status", id);
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <div className="flex flex-col bg-white p-5 rounded-md">
@@ -31,11 +44,26 @@ export const RoadmapOverviewCard = async ({ roadmapCount }: Props) => {
                   className="w-2 h-2 rounded-lg inline-block"
                   style={{ background: roadmapOption.color }}
                 />
-                <p className="text-sm text-slate-500 font-medium">
+                <p
+                  onClick={() =>
+                    handleSelect(
+                      `${
+                        roadmapOption.id === selectedStatus
+                          ? "all"
+                          : roadmapOption.id
+                      }`
+                    )
+                  }
+                  className={`text-sm text-slate-500 font-medium cursor-pointer ${
+                    roadmapOption.id === selectedStatus ? "underline" : ""
+                  }`}
+                >
                   {roadmapOption.label}
                 </p>
                 <p className="font-bold text-base text-slate-500 ml-auto">
-                  {(roadmapCount[roadmapOption.id]) ? roadmapCount[roadmapOption.id] : 0 }
+                  {roadmapCount[roadmapOption.id]
+                    ? roadmapCount[roadmapOption.id]
+                    : 0}
                 </p>
               </div>
             </li>
