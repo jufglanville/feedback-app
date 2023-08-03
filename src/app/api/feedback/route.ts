@@ -10,12 +10,18 @@ export async function GET(req: NextRequest) {
   const res = await fetch("http://localhost:3001/productRequests");
   const feedback: FeedbackPost[] = await res.json();
 
+  const roadmapCount = {
+    planned: feedback.filter((item: FeedbackPost) => item.status === "planned").length,
+    inProgress: feedback.filter((item: FeedbackPost) => item.status === "inProgress").length,
+    live: feedback.filter((item: FeedbackPost) => item.status === "live").length,
+  }
+
   let filteredFeedback = filterFeedback(feedback, "category", categories);
   filteredFeedback = filterFeedback(filteredFeedback, "status", status);
 
   filteredFeedback = sortFeedback(sort, filteredFeedback);
 
-  return new NextResponse(JSON.stringify(filteredFeedback));
+  return new NextResponse(JSON.stringify({filteredFeedback, roadmapCount}));
 }
 
 const filterFeedback = (

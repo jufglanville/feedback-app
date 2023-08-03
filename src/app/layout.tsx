@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={jost.className}>
         {/* <Providers> */}
-          <main className="max-w-5xl m-auto my-16">{children}</main>
+          <main className="max-w-6xl m-auto lg:my-16 lg:px-8">{children}</main>
         {/* </Providers> */}
       </body>
     </html>
