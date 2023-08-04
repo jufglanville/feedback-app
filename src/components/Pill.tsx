@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   selected?: boolean;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 export function Pill({ selected, children, onClick }: Props) {

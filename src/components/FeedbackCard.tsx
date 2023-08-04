@@ -11,7 +11,7 @@ export const FeedbackCard = ({ feedback }: Props) => {
   return (
     <Link href={`/feedback/${feedback.id}`}>
       <div className="flex bg-white p-8 rounded-md items-start gap-8">
-        <UpvoteButton selected={feedback.upvoted} quantity={feedback.upvotes} />
+        <UpvoteButton quantity={feedback.upvotes} feedbackId={feedback.id} />
         <div className="flex flex-col gap-3 items-start">
           <h2 className="font-semibold text-lg">{feedback.title}</h2>
           <p className="text-sm text-slate-500 font-regular mb-2">

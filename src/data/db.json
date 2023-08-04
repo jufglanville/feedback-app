@@ -3,7 +3,8 @@
     "id": 10,
     "image": "https://i.pravatar.cc/300?img=10",
     "name": "Zena Kelley",
-    "username": "velvetround"
+    "username": "velvetround",
+    "upvoted": [1, 2]
   },
   "sortOptions": [
     { "id": "mostUpvotes", "label": "Most Upvotes" },

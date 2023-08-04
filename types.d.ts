@@ -9,6 +9,7 @@ type User = {
   image: string;
   name: string;
   username: string;
+  upvoted: number[];
 }
 
 type Reply = {
@@ -22,6 +23,13 @@ type FeedbackComment = {
   content: string;
   user: User;
   replies: Reply[];
+}
+
+type CommentCard = {
+  id?: string;
+  content: string;
+  user: User;
+  replyingTo?: string;
 }
 
 type FeedbackPost = {
