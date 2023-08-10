@@ -10,11 +10,17 @@ export async function GET(req: NextRequest) {
   const res = await fetch("http://localhost:3001/productRequests");
   const feedback: FeedbackPost[] = await res.json();
 
-  const roadmapCount = {
-    planned: feedback.filter((item: FeedbackPost) => item.status === "planned").length,
-    inProgress: feedback.filter((item: FeedbackPost) => item.status === "inProgress").length,
-    live: feedback.filter((item: FeedbackPost) => item.status === "live").length,
-  }
+
+  const roadmapCount = feedback.reduce((acc, item) => {
+    if (item.status === "planned") {
+      acc.planned += 1;
+    } else if (item.status === "inProgress") {
+      acc.inProgress += 1;
+    } else if (item.status === "live") {
+      acc.live += 1;
+    }
+    return acc;
+  }, {planned: 0, inProgress: 0, live: 0});
 
   let filteredFeedback = filterFeedback(feedback, "category", categories);
   filteredFeedback = filterFeedback(filteredFeedback, "status", status);
